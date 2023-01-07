@@ -1,0 +1,260 @@
+@import './base.css';
+
+/* Define styles for the default root window element */
+:root {
+    --background-color-primary: #ebebeb;
+    --background-color-secondary: #fafafa;
+    --accent-color: #ff8000;
+    --text-primary-color: #222;
+    --title-primary-color: #222;
+    --text-white: #fff;
+    --element-size: 4rem;
+    --link-color: #0d6efd;
+    --button-bg: #0d6efd;
+}
+
+/* Define styles for the root window with dark - mode preference */
+:root.dark-theme {
+    --background-color-primary: #1e1e1e;
+    --background-color-secondary: #7b7b7b;
+    --accent-color: #c509098f;
+    --text-primary-color: #fff;
+    --title-primary-color: #fff;
+    --text-white: #222;
+    --link-color: #fff;
+    --button-bg: #103f83c7;
+}
+
+main{
+        padding-top: 100px;
+}
+
+.text-white{
+    color: var(--title-primary-color)!important;
+}
+
+
+/* BASE */
+section {
+    padding-top: 100px;
+}
+
+section:last-child{
+    padding-bottom: 100px;
+}
+
+body {
+    background: var(--background-color-primary);
+}
+
+
+/* we will explain what these classes do next! */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+
+/* HEADER */
+.header {
+    background-color: var(--background-color-primary);
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+}
+
+.header .logo{
+    color: var(--title-primary-color);
+}
+
+.header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: var(--background-color-primary);
+}
+
+.header li a {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid var(--background-color-secondary);
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+.header li a:hover,
+.header .menu-btn:hover {
+    background-color: var(--background-color-secondary);
+}
+
+.header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+/* menu */
+
+.header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+}
+
+.header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+    top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked~.menu {
+    max-height: 240px;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+    .header li {
+        float: left;
+    }
+
+    .header li a {
+        padding: 20px 30px;
+    }
+
+    .header .menu {
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+
+    .header .menu-icon {
+        display: none;
+    }
+}
+
+
+/* POSTS */
+.title{
+    color: var(--title-primary-color);
+}
+
+.posts-item {
+    margin-bottom: 20px;
+}
+
+.posts-item__body {
+    padding: 20px;
+    background: var(--background-color-secondary);
+    border-radius: 15px;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.posts-item__body h3{
+    padding-right: 55px;
+}
+
+.posts-item__body h3,
+.posts-item__body p{
+    color: var(--text-primary-color);
+}
+
+.posts-item__body button {
+    margin-top: auto;
+    width: fit-content;
+}
+
+.posts-item__comments-img {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+span.post-item__tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent-color);
+    color: var(--text-primary-color);
+    padding: 0px 15px;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* BUTTONS */
+.btn-primary{
+    background-color: var(--button-bg);
+    border-color: var(--button-bg);
+}
