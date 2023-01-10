@@ -1,5 +1,5 @@
 <script>
-import themeToggleButton from "@/components/themeToggleButton.vue";
+import themeToggleButton from "../components/themeToggleButton.vue";
 export default {
   components: { themeToggleButton },
 };
@@ -13,8 +13,8 @@ export default {
       ><span class="navicon"></span
     ></label>
     <ul class="menu">
-      <li><router-link to="/">Go to Home</router-link></li>
-      <li><router-link to="/about">Go to About</router-link></li>
+      <li><router-link to="/">Home</router-link></li>
+      <li><router-link to="/trello">Trello</router-link></li>
       <li class="toggle-team"><theme-toggle-button /></li>
     </ul>
   </header>

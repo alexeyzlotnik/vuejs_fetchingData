@@ -4,7 +4,7 @@ import {
 } from 'vue-router';
 
 import Home from '../views/Home.vue';
-import About from '../views/About.vue';
+import Trello from '../views/Trello.vue';
 
 export default createRouter({
     history: createWebHistory(),
@@ -14,9 +14,9 @@ export default createRouter({
             component: Home,
         },
         {
-            path: '/about',
-            name: "About",
-            component: About,
+            path: '/trello',
+            name: "Trello",
+            component: Trello,
         }
     ]
 })

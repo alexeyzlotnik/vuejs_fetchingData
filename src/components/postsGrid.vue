@@ -84,8 +84,25 @@
       </div>
     </div>
 
+    <form @submit.prevent="addComment(passedDataToModal.post_id)" class="mt-5">
+      <div class="d-flex flex-column gap-3">
+        <h2>Add new comment</h2>
+        <input placeholder="Your Name" type="text" v-model="newCommentName" />
+        <input
+          placeholder="Your email"
+          type="email"
+          v-model="newCommentEmail"
+        />
+        <textarea
+          placeholder="Your comment"
+          type="text"
+          v-model="newCommentBody"
+        />
+        <input type="submit" value="Submit" class="btn btn-primary" />
+      </div>
+    </form>
+
     <template #footer></template>
-    <!-- </div> -->
   </commentModal>
 </template>
 
@@ -124,6 +141,9 @@ export default {
       currentLayout: "",
       layoutClass: "col-4",
       commentModalActive: false,
+      newCommentName: "",
+      newCommentEmail: "",
+      newCommentBody: "",
     };
   },
   props: {
@@ -174,6 +194,19 @@ export default {
       } else if (this.currentLayout === "row") {
         this.layoutClass = "col-8 m-auto mb-3";
       }
+    },
+
+    addComment(id) {
+      this.commentsData.push({
+        postId: id,
+        id: this.commentsData.length + 1,
+        name: this.newCommentName,
+        email: this.newCommentEmail,
+        body: this.newCommentBody,
+      });
+      this.newCommentName = "";
+      this.newCommentEmail = "";
+      this.newCommentBody = "";
     },
   },
 
