@@ -1,7 +1,8 @@
 <script setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import AddItem from "./AddItem.vue";
 import List from "./List.vue";
+import CancelIcon from "../icons/cancelIcon.vue";
 
 let props = defineProps({
   title: String,
@@ -27,19 +28,47 @@ let updateTitle = (text) => {
 let addNewItem = (newItem) => {
   list.value.push(newItem);
 };
+
+let removeItem = (item) => {
+  console.log(item);
+  list.value.splice(item, 1);
+};
+
+let removeAllItems = (iem) => {
+  list.value = [];
+};
+
+let filteredList = computed(() => {
+  return list.value.filter((a) => a.id === props.columnId);
+});
 </script>
 
 
 <template>
   <div class="trello-column">
-    <input
-      class="trello-column__title w-100 mb-3"
-      type="text"
-      :value="props.title"
-      @input="updateTitle($event.target.value)"
-    />
+    <div class="d-flex w-100 mb-3">
+      <div class="row w-100 m-auto">
+        <input
+          class="trello-column__title col-11 px-0"
+          type="text"
+          :value="
+            filteredList.length
+              ? props.title + ' (' + filteredList.length + ')'
+              : props.title
+          "
+          @input="updateTitle($event.target.value)"
+        />
 
-    <List :list="list.filter((a) => a.id === props.columnId)" />
+        <CancelIcon
+          v-if="filteredList.length"
+          class="delete col-1 p-0"
+          role="button"
+          @click="removeAllItems"
+        />
+      </div>
+    </div>
+
+    <List :list="filteredList" @remove-item="removeItem" />
 
     <AddItem @new-item="addNewItem" :column-id="columnId" />
   </div>
