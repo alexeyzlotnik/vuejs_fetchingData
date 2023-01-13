@@ -7,7 +7,6 @@
     class="
       cursor-pointer
       rounded-full
-      p-1
       text-red-500
       hover:bg-red-600 hover:text-white
     "
@@ -19,3 +18,9 @@
     ></path>
   </svg>
 </template>
+
+<style scoped>
+svg {
+  cursor: pointer;
+}
+</style>

@@ -1,18 +1,36 @@
 <template>
   <div class="list w-100 d-flex flex-column">
     <TransitionGroup name="list" tag="div">
-      <div v-for="item in list" :key="item.id" class="mb-3">
+      <div v-for="(item, index) in list" :key="item.id" class="mb-3">
         <div v-if="item.is_editing_card" class="list-item edit">
-          <input type="text" v-model="item.title" />
-          <textarea v-model="item.content">{{ item.content }}</textarea>
+          <input
+            type="text"
+            v-model="item.title"
+            placeholder="add your title here"
+          />
+          <textarea
+            v-model="item.content"
+            placeholder="add your content here"
+            >{{ item.content }}</textarea
+          >
 
-          <AcceptIcon @click="handleEditCard('save', item)" />
+          <AcceptIcon class="save" @click="handleEditCard('save', item)" />
         </div>
 
-        <div v-else class="list-item" @click="handleEditCard('change', item)">
+        <div
+          v-else
+          class="list-item"
+          @mouseover="hoverIndex = index"
+          @mouseleave="hoverIndex = null"
+          @dblclick="handleEditCard('change', item)"
+        >
           <h6>{{ item.title }}</h6>
           <p>{{ item.content }}</p>
-          <!-- <button class="destroy" @click="removeTodo(todo)"></button> -->
+          <CancelIcon
+            v-if="hoverIndex == index"
+            class="delete"
+            @click="$emit('removeItem', index)"
+          />
         </div>
       </div>
     </TransitionGroup>
@@ -20,11 +38,15 @@
 </template>
 
 <script setup>
+import { ref } from "@vue/reactivity";
 import AcceptIcon from "../icons/acceptIcon.vue";
+import CancelIcon from "../icons/cancelIcon.vue";
 
 let props = defineProps({
   list: Object,
 });
+
+let emits = defineEmits(["removeItem"]);
 
 const handleEditCard = (type, selectedCard) => {
   if (type === "change") {
@@ -34,6 +56,8 @@ const handleEditCard = (type, selectedCard) => {
     selectedCard.is_editing_card = false;
   }
 };
+
+let hoverIndex = ref(null);
 </script>
 
 <style scoped>
@@ -41,10 +65,17 @@ const handleEditCard = (type, selectedCard) => {
   background: #fff;
   border-radius: 3px;
   padding: 15px;
+  position: relative;
 }
 
 .list-item p {
   margin: 0;
+}
+
+.list-item .delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 p,
@@ -72,7 +103,7 @@ textarea {
   margin-bottom: 0;
 }
 
-svg {
+svg.save {
   background-color: rgb(59 130 246);
   border-radius: 50%;
 }
