@@ -7,6 +7,7 @@
             type="text"
             v-model="item.title"
             placeholder="add your title here"
+            @keyup.enter="handleEditCard('save', item)"
           />
           <textarea
             v-model="item.content"
@@ -66,6 +67,7 @@ let hoverIndex = ref(null);
   border-radius: 3px;
   padding: 15px;
   position: relative;
+  box-shadow: 7px 5px 14px 0px #cccccc4a;
 }
 
 .list-item p {

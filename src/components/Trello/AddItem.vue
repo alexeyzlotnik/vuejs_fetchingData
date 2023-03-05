@@ -25,12 +25,14 @@
       name="title"
       placeholder="Add card title *"
       v-model="title"
+      @keyup.enter="addItemApprove"
     />
     <textarea
       type="text"
       name="content"
       placeholder="Add card content"
       v-model="content"
+      @keyup.enter="addItemApprove"
     ></textarea>
     <div class="mt-2 d-flex w-100 align-items-center justify-content-end">
       <AcceptIcon @click="addItemApprove" />

@@ -21,6 +21,7 @@ export default {
     role="dialog"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
+    @keydown.esc="close"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -29,7 +30,7 @@ export default {
           <button
             type="button"
             class="btn-close"
-            @click="$emit('close')"
+            @click="close"
             aria-label="Close modal"
           >
             x

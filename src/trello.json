@@ -1,0 +1,55 @@
+
+{
+    "mainTitle": "Trello",
+    "columns": [
+        {
+            "id": "0",
+            "title": "Todo",
+            "tasks": [
+                {
+                    "id": 0,
+                    "title": "task 1",
+                    "content": "some content"
+                },
+                {
+                    "id": 1,
+                    "title": "task 2",
+                    "content": "some content"
+                }
+            ]
+        },
+        {
+            "id": "1",
+            "title": "Doing",
+            "tasks": [
+                {
+                    "id": 0,
+                    "title": "task 3",
+                    "content": "some content"
+                },
+                {
+                    "id": 1,
+                    "title": "task 4",
+                    "content": "some content"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Done",
+            "tasks": [
+                {
+                    "id": 0,
+                    "title": "task 5",
+                    "content": "some content"
+                },
+                {
+                    "id": 1,
+                    "title": "task 6",
+                    "content": "some content"
+                }
+            ]
+        }  
+        
+    ]
+}
