@@ -23,7 +23,7 @@
     <input
       type="text"
       name="title"
-      placeholder="Add card title"
+      placeholder="Add card title *"
       v-model="title"
     />
     <textarea
@@ -55,7 +55,7 @@ let newItem = ref(Object);
 let emits = defineEmits(["newItem"]);
 
 let addNewItem = () => {
-  if (title.value !== "" && content.value !== "") {
+  if (title.value !== "") {
     newItem = {
       id: props.columnId,
       title: title.value,

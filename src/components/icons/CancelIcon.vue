@@ -7,7 +7,6 @@
     class="
       cursor-pointer
       rounded-full
-      p-1
       text-red-500
       hover:bg-red-600 hover:text-white
     "
@@ -20,4 +19,8 @@
   </svg>
 </template>
 
-<!-- test change for git -->
+<style scoped>
+svg {
+  cursor: pointer;
+}
+</style>
